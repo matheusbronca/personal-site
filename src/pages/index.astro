@@ -3,13 +3,12 @@ import { getCollection } from "astro:content";
 import LoveAndPeaceHandIcon from "@components/Icons/LoveAndPeaceHandIcon.astro";
 import Container from "@components/Container.astro";
 import PageLayout from "@layouts/PageLayout.astro";
-// import ArrowCard from "@components/ArrowCard.astro";
 import ProjectCard from "@components/ProjectCard.astro";
 import Link from "@components/Link.astro";
 import { dateRange } from "@lib/utils";
 import { SITE, HOME, SOCIALS } from "@consts";
 import FeaturedButton from "@components/FeaturedButton.astro";
-import Img from "@components/Img.astro";
+import { Image } from "astro:assets";
 
 // const blog = (await getCollection("blog"))
 //   .filter(post => !post.data.draft)
@@ -45,35 +44,37 @@ const entry = work[0];
       <div
         class="size-36 rounded-full overflow-hidden border-green-400 border-2 shadow-sky-100 dark:shadow-sky-900 shadow-xl relative after:size-full after:absolute after:top-0 after:left-0 after:border-4 after:dark:border-black after:border-white after:z-20 after:rounded-full"
       >
-        <Img class="animate size-full object-cover" src="/avatar.jpg" />
-        <!-- <img class="size-full object-cover" src="/avatar.jpg" /> -->
-        <div class="flex flex-col items-center">
-          <h4
-            class="animate font-semibold text-black dark:text-white flex items-center text-xl justify-center md:justify-start text-center md:text-left"
-          >
-            Hi, I'm Matheus Bronca<span class="text-xl"
-              ><LoveAndPeaceHandIcon />
-            </span>
-          </h4>
-          <p
-            class="animate text-sm font-sans mt-2 leading-5 justify-center md:justify-left text-center text-balance"
-          >
-            An experienced software developer, with a vast history of creating,
-            executing, and leading the development of software solutions that
-            boost business growth all around the globe.
-          </p>
-        </div>
+        <Image
+          class="animate size-full object-cover"
+          src="/avatar.jpg"
+          width={150}
+          height={150}
+          alt={"Matheus Bronca - Softweare Engineer"}
+        />
+      </div>
+      <div class="flex flex-col items-center">
+        <h4
+          class="animate font-semibold text-black dark:text-white flex items-center text-xl justify-center md:justify-start text-center md:text-left"
+        >
+          Hi, I'm Matheus Bronca<span class="text-xl"
+            ><LoveAndPeaceHandIcon />
+          </span>
+        </h4>
+        <p
+          class="animate text-sm font-sans mt-2 leading-5 justify-center md:justify-left text-center text-pretty"
+        >
+          An experienced software developer, with a vast history of creating,
+          executing, and leading the development of software solutions that
+          boost business growth all around the globe.
+        </p>
       </div>
       <div class="space-y-16">
         <section>
           <article class="space-y-4 flex flex-col items-center">
             <p class="animate text-pretty text-center md:px-10">
-              With a rich seven-year background in the Graphic Design and
-              Branding industry, I have honed a keen eye for visual detail,
-              which complements my technical skills and bridges the gap between
-              creative vision and technical implementation. As a Software
-              Engineer, my dual expertise empowers me to understand projects as
-              businesses and deliver innovative end- to-end solutions.
+              As a Software Engineer, my dual expertise in graphic design and
+              development empowers me to understand projects as businesses and
+              deliver innovative end- to-end solutions.
             </p>
             <div
               class="flex flex-col md:flex-row gap-2 items-center justify-center"
