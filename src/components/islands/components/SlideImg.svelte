@@ -27,6 +27,7 @@
   <source
     type="image/webp"
     srcset={inView ? getWebPSource(src) : PLACEHOLDER_SRC}
+    media="(orientation: landscape)"
   />
   {#if mobileSrc}
     <source
