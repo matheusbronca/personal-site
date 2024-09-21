@@ -30,7 +30,7 @@ const { entry } = Astro.props;
         {entry.data.title}
         {
           (entry as Project).data.customer && (
-            <span class="text-xs">- {entry.data.customer}</span>
+            <span class="text-xs">- {(entry as Project).data.customer}</span>
           )
         }
       </div>
