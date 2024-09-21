@@ -1,0 +1,24 @@
+---
+const { src, mobileSrc, altText, ...props } = Astro.props;
+
+const getWebPSource = (src: string) => {
+  const parts = src.split(".");
+  const path = parts[0];
+  return `${path}.webp`;
+};
+---
+
+<picture {...props}>
+  <source type="image/webp" srcset={getWebPSource(src)} />
+  {
+    mobileSrc && (
+      <source
+        type="image/webp"
+        srcset={getWebPSource(mobileSrc)}
+        media="(orientation: portrait)"
+      />
+    )
+  }
+  {mobileSrc && <source srcset={mobileSrc} media="(orientation: portrait)" />}
+  <img src={src} alt={altText} />
+</picture>

@@ -1,3 +1,7 @@
+import { z } from "astro:content";
+import type { SchemaContext } from "astro:content";
+import type { ZodType } from "astro:schema";
+
 export type Site = {
   NAME: string;
   EMAIL: string;
@@ -15,3 +19,9 @@ export type Socials = {
   NAME: string;
   HREF: string;
 }[];
+
+type ZodSchemaType<T> = NonNullable<
+  Exclude<T, (context: SchemaContext) => unknown>
+>;
+
+export type InferZodSchema<T extends ZodType> = z.infer<ZodSchemaType<T>>;

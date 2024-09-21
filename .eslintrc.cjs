@@ -5,6 +5,7 @@ module.exports = {
     es2024: true,
   },
   extends: [
+    "prettier",
     "eslint:recommended",
     "plugin:astro/recommended",
     "plugin:@typescript-eslint/recommended",

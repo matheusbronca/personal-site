@@ -1,0 +1,35 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { dateRange } from "@lib/utils";
+
+type Props = {
+  entry: CollectionEntry<"work">;
+};
+
+const { entry } = Astro.props;
+const Entry = await entry.render();
+---
+
+<div class="flex gap-4 items-center">
+  <a href={entry.data.url} rel="external">
+    <img
+      class="rounded-full size-16 shadow-lg hover:shadow-xl transition-shadow duration-200 shadow-green-100 dark:shadow-green-900"
+      src={entry.data.imgSrc}
+      alt={entry.data.imgAlt}
+    />
+  </a>
+  <div>
+    <div class="font-semibold text-black dark:text-white">
+      <a href={entry.data.url} rel="external">{entry.data.company}</a>
+    </div>
+    <div class="text-xs opacity-75">
+      {dateRange(entry.data.dateStart, entry.data.dateEnd)}
+    </div>
+    <div class="text-sm opacity-75 mt-1">
+      {entry.data.role}
+    </div>
+  </div>
+</div>
+<article>
+  <Entry.Content />
+</article>

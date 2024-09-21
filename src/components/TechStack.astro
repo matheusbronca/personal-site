@@ -1,0 +1,26 @@
+---
+import { STACKS } from "@consts";
+
+export type StackKey = keyof typeof STACKS;
+
+interface Props {
+  stack: StackKey;
+}
+const { stack } = Astro.props;
+
+const stackObj = STACKS[stack];
+
+export type Stack = typeof stackObj;
+
+const { friendlyName, url, altText, Icon } = stackObj;
+---
+
+<a
+  target="_blank"
+  href={url}
+  rel="external"
+  title={altText}
+  class="relative group w-fit flex gap-2 items-center px-3 py-1.5 no-underline flex-nowrap rounded border border-black/15 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/5 hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out text-xs s-EY0vwEqMshoL"
+>
+  <Icon />{friendlyName}</a
+>

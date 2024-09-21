@@ -5,10 +5,11 @@ import Container from "@components/Container.astro";
 import FormattedDate from "@components/FormattedDate.astro";
 import { readingTime } from "@lib/utils";
 import BackToPrev from "@components/BackToPrev.astro";
+import { AstroSeo } from "@astrolib/seo";
 
 export async function getStaticPaths() {
   const posts = (await getCollection("blog"))
-    .filter(post => !post.data.draft)
+    .filter((post) => !post.data.draft)
     .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
   return posts.map((post) => ({
     params: { slug: post.slug },
@@ -21,12 +22,23 @@ const post = Astro.props;
 const { Content } = await post.render();
 ---
 
+<AstroSeo
+  openGraph={{
+    images: [
+      {
+        url: `https://matheusbronca.com${post.data.cover}`,
+        width: 1200,
+        height: 630,
+        alt: post.data.description,
+        type: "image/jpeg",
+      },
+    ],
+  }}
+/>
 <PageLayout title={post.data.title} description={post.data.description}>
   <Container>
     <div class="animate">
-      <BackToPrev href="/blog">
-        Back to blog
-      </BackToPrev>
+      <BackToPrev href="/blog"> Back to blog </BackToPrev>
     </div>
     <div class="space-y-1 my-10">
       <div class="animate flex items-center gap-1.5">

@@ -1,159 +1,251 @@
 ---
 import { getCollection } from "astro:content";
+import LoveAndPeaceHandIcon from "@components/Icons/LoveAndPeaceHandIcon.astro";
 import Container from "@components/Container.astro";
 import PageLayout from "@layouts/PageLayout.astro";
-import ArrowCard from "@components/ArrowCard.astro";
+// import ArrowCard from "@components/ArrowCard.astro";
+import ProjectCard from "@components/ProjectCard.astro";
 import Link from "@components/Link.astro";
 import { dateRange } from "@lib/utils";
 import { SITE, HOME, SOCIALS } from "@consts";
+import FeaturedButton from "@components/FeaturedButton.astro";
+import Img from "@components/Img.astro";
 
-const blog = (await getCollection("blog"))
-  .filter(post => !post.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0,SITE.NUM_POSTS_ON_HOMEPAGE);
+// const blog = (await getCollection("blog"))
+//   .filter(post => !post.data.draft)
+//   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+//   .slice(0,SITE.NUM_POSTS_ON_HOMEPAGE);
 
 const projects = (await getCollection("projects"))
-  .filter(project => !project.data.draft)
+  .filter((project) => !project.data.draft)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0,SITE.NUM_PROJECTS_ON_HOMEPAGE);
+  .slice(0, SITE.NUM_PROJECTS_ON_HOMEPAGE);
 
 const allwork = (await getCollection("work"))
-  .sort((a, b) => new Date(b.data.dateStart).valueOf() - new Date(a.data.dateStart).valueOf())
-  .slice(0,SITE.NUM_WORKS_ON_HOMEPAGE);
+  .sort(
+    (a, b) =>
+      new Date(b.data.dateStart).valueOf() -
+      new Date(a.data.dateStart).valueOf(),
+  )
+  .slice(0, SITE.NUM_WORKS_ON_HOMEPAGE);
 
 const work = await Promise.all(
   allwork.map(async (item) => {
     const { Content } = await item.render();
     return { ...item, Content };
-  })
+  }),
 );
 
+const entry = work[0];
 ---
 
 <PageLayout title={HOME.TITLE} description={HOME.DESCRIPTION}>
   <Container>
-    <h4 class="animate font-semibold text-black dark:text-white">
-      Hi, I'm Nano <span class="text-xl">👋🏻</span> 
-    </h4>
-    <div class="space-y-16">
-      <section>
-        <article class="space-y-4">
-          <p class="animate">
-            I am a minimal, seo friendly, accessible portfolio and blog for developers. 
-            I am an even more lightweight version of my popular theme
-            <Link href="https://github.com/markhorn-dev/astro-sphere" aria-label="Astro Sphere on Github" external>
-              Astro Sphere
-            </Link>.
-            I have a lighthouse scores of 100 across the board for performance, 
-            accesibility, best practices and SEO.
+    <div class="flex flex-col gap-6 items-center justify-center">
+      <div
+        class="size-36 rounded-full overflow-hidden border-green-400 border-2 shadow-sky-100 dark:shadow-sky-900 shadow-xl relative after:size-full after:absolute after:top-0 after:left-0 after:border-4 after:dark:border-black after:border-white after:z-20 after:rounded-full"
+      >
+        <Img class="animate size-full object-cover" src="/avatar.jpg" />
+        <!-- <img class="size-full object-cover" src="/avatar.jpg" /> -->
+        <div class="flex flex-col items-center">
+          <h4
+            class="animate font-semibold text-black dark:text-white flex items-center text-xl justify-center md:justify-start text-center md:text-left"
+          >
+            Hi, I'm Matheus Bronca<span class="text-xl"
+              ><LoveAndPeaceHandIcon />
+            </span>
+          </h4>
+          <p
+            class="animate text-sm font-sans mt-2 leading-5 justify-center md:justify-left text-center text-balance"
+          >
+            An experienced software developer, with a vast history of creating,
+            executing, and leading the development of software solutions that
+            boost business growth all around the globe.
           </p>
-          <p class="animate">
-            I come packed with full type safety, a sitemap, an rss feed, markdown 
-            and mdx support (use components in your markdown) through astro integrations.
-            I am styled with tailwind and come preconfigured with light, dark and 
-            system/os theme preferences out of the box.
-          </p>
-          <p class="animate">
-            Visit
-            <Link href="https://github.com/markhorn-dev/astro-nano" aria-label="Astro Nano on Github" external>
-              Astro Nano on Github
-            </Link>
-            to fork the repository, read the docs or one-click deploy on Vercel or Netlify. 
-          </p>
-        </article>
-      </section>
-
-      <section class="animate space-y-6">
-        <div class="flex flex-wrap gap-y-2 items-center justify-between">
-          <h5 class="font-semibold text-black dark:text-white">
-            Latest posts
-          </h5>
-          <Link href="/blog">
-            See all posts
-          </Link>
         </div>
-        <ul class="flex flex-col gap-4">
-          {blog.map(post => (
+      </div>
+      <div class="space-y-16">
+        <section>
+          <article class="space-y-4 flex flex-col items-center">
+            <p class="animate text-pretty text-center md:px-10">
+              With a rich seven-year background in the Graphic Design and
+              Branding industry, I have honed a keen eye for visual detail,
+              which complements my technical skills and bridges the gap between
+              creative vision and technical implementation. As a Software
+              Engineer, my dual expertise empowers me to understand projects as
+              businesses and deliver innovative end- to-end solutions.
+            </p>
+            <div
+              class="flex flex-col md:flex-row gap-2 items-center justify-center"
+            >
+              <h4 class="animate m-0 text-xs">Keywords:</h4>
+              <p
+                class="animate m-0 w-3/4 text-xs text-center md:text-left md:w-full leading-5"
+              >
+                Web developer, Front-end Engineer, React, Svelte, TypeScript,
+                JavaScript, CSS, GSAP, VTEX, Jest, Vitest
+              </p>
+            </div>
+            <div class="animate flex gap-4">
+              <FeaturedButton href="#projects">
+                Discover projects
+              </FeaturedButton>
+            </div>
+          </article>
+        </section>
+        <section class="animate space-y-6">
+          <div class="flex flex-wrap gap-y-2 items-center justify-between">
+            <h5 class="font-semibold text-black dark:text-white text-lg">
+              Most recent experience
+            </h5>
+            <Link href="/work"> See all work </Link>
+          </div>
+          <ul class="flex flex-col space-y-4">
             <li>
-              <ArrowCard entry={post} />
-            </li>
-          ))}
-        </ul>
-      </section>
+              <div class="flex gap-4 items-center">
+                <a href="https://frncubo.com/" rel="external">
+                  <img
+                    class="rounded-full overflow-hidden size-16 shadow-lg dark:shadow-green-900 shadow-green-100"
+                    src={entry.data.imgSrc}
+                    alt={entry.data.imgAlt}
+                  />
+                </a>
+                <div>
+                  <div class="font-semibold text-black dark:text-white">
+                    <a
+                      class="hover:underline"
+                      href="https://frncubo.com/"
+                      rel="external">{entry.data.company}</a
+                    >
+                  </div>
+                  <div class="text-sm opacity-75">{entry.data.role}</div>
+                  <div class="text-xs opacity-75">
+                    {dateRange(entry.data.dateStart, entry.data.dateEnd)}
+                  </div>
+                </div>
+              </div>
+              <div class="flex gap-4 justify-between">
+                <article class="text-sm text-pretty md:max-w-[50%]">
+                  <entry.Content />
+                </article>
+                <div class="md:w-[40%] mt-3">
+                  <h6
+                    class="flex gap-2 items-center font-semibold text-black dark:text-white text-base mb-2"
+                  >
+                    <span
+                      ><svg
+                        class="size-5"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-width="1.5"
+                          d="M8.25 12.25L9.68934 13.6893C10.2751 14.2751 11.2249 14.2751 11.8107 13.6893L16 9.5"
+                        ></path>
+                        <path
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          d="M10.8107 21.5607L9.18934 19.9393C8.90804 19.658 8.5265 19.5 8.12868 19.5H6.12132C5.7235 19.5 5.34196 19.342 5.06066 19.0607L4.93934 18.9393C4.65804 18.658 4.5 18.2765 4.5 17.8787V15.8713C4.5 15.4735 4.34197 15.092 4.06066 14.8107L2.43934 13.1893C2.15804 12.908 2 12.5265 2 12.1287V11.8713C2 11.4735 2.15803 11.092 2.43934 10.8107L4.06066 9.18934C4.34196 8.90804 4.5 8.5265 4.5 8.12868V6.12132C4.5 5.7235 4.65804 5.34196 4.93934 5.06066L5.06066 4.93934C5.34196 4.65804 5.7235 4.5 6.12132 4.5H8.12868C8.5265 4.5 8.90803 4.34197 9.18934 4.06066L10.8107 2.43934C11.092 2.15804 11.4735 2 11.8713 2H12.1287C12.5265 2 12.908 2.15803 13.1893 2.43934L14.8107 4.06066C15.092 4.34196 15.4735 4.5 15.8713 4.5H17.8787C18.2765 4.5 18.658 4.65804 18.9393 4.93934L19.0607 5.06066C19.342 5.34196 19.5 5.7235 19.5 6.12132V8.12868C19.5 8.5265 19.658 8.90803 19.9393 9.18934L21.5607 10.8107C21.842 11.092 22 11.4735 22 11.8713V12.1287C22 12.5265 21.842 12.908 21.5607 13.1893L19.9393 14.8107C19.658 15.092 19.5 15.4735 19.5 15.8713V17.8787C19.5 18.2765 19.342 18.658 19.0607 18.9393L18.9393 19.0607C18.658 19.342 18.2765 19.5 17.8787 19.5H15.8713C15.4735 19.5 15.092 19.658 14.8107 19.9393L13.1893 21.5607C12.908 21.842 12.5265 22 12.1287 22H11.8713C11.4735 22 11.092 21.842 10.8107 21.5607Z"
+                        ></path>
+                      </svg></span
+                    >Achievements
+                  </h6>
+                  <ul class="flex flex-col gap-4 prose dark:text-white/80">
+                    <li class="text-sm">
+                      <div class="text-xs text-black/60 dark:text-white/60">
+                        2023
+                      </div>
+                      Taught a VTEX IO practical course at Morocco (local)
+                    </li>
+                    <li class="text-sm">
+                      <div>
+                        <div class="text-xs dark:text-white/60 text-black/60">
+                          2023
+                        </div>
+                        Taught a VTEX IO practical course at England (remote)
+                      </div>
+                    </li>
+                    <li class="text-sm">
+                      <div>
+                        <div class="text-xs dark:text-white/60 text-black/60">
+                          2023
+                        </div>
+                        Taught a VTEX IO practical course at France (remote)
+                      </div>
+                    </li>
 
-      <section class="animate space-y-6">
-        <div class="flex flex-wrap gap-y-2 items-center justify-between">
+                    <li class="text-sm">
+                      <div>
+                        <div class="text-xs dark:text-white/60 text-black/60">
+                          2022
+                        </div>
+                        Promoted from Front-end engineer to Tech Lead
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <section id="projects" class="animate space-y-6">
+          <div class="flex flex-wrap gap-y-2 items-center justify-between">
+            <h5 class="font-semibold dark:text-white text-black text-lg">
+              Featured projects
+            </h5>
+            <Link href="/projects"> See all projects </Link>
+          </div>
+          <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {
+              projects.map((project) => (
+                <li>
+                  <ProjectCard entry={project} />
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        <section class="animate space-y-4">
           <h5 class="font-semibold text-black dark:text-white">
-            Work Experience
+            Let's Connect
           </h5>
-          <Link href="/work">
-            See all work
-          </Link>
-        </div>
-        <ul class="flex flex-col space-y-4">
-          {work.map(entry => (
-            <li>
-              <div class="text-sm opacity-75">
-                {dateRange(entry.data.dateStart, entry.data.dateEnd)}
-              </div>
-              <div class="font-semibold text-black dark:text-white">
-                {entry.data.company}
-              </div>
-              <div class="text-sm opacity-75">
-                {entry.data.role}
-              </div>
-              <article>
-                <entry.Content />
-              </article>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section class="animate space-y-6">
-        <div class="flex flex-wrap gap-y-2 items-center justify-between">
-          <h5 class="font-semibold text-black dark:text-white">
-            Recent projects
-          </h5>
-          <Link href="/projects">
-            See all projects
-          </Link>
-        </div>
-        <ul class="flex flex-col gap-4">
-          {projects.map(project => (
-            <li>
-              <ArrowCard entry={project} />
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section class="animate space-y-4">
-        <h5 class="font-semibold text-black dark:text-white">
-          Let's Connect
-        </h5>
-        <article>
-          <p>
-            If you want to get in touch with me about something or just to say hi,
-            reach out on social media or send me an email.
-          </p>
-        </article>
-        <ul class="flex flex-wrap gap-2">
-          {SOCIALS.map(SOCIAL => (
-            <li class="flex gap-x-2 text-nowrap">
-              <Link href={SOCIAL.HREF} external aria-label={`${SITE.NAME} on ${SOCIAL.NAME}`}>
-                {SOCIAL.NAME}
+          <article>
+            <p>
+              If you want to get in touch with me about something or just to say
+              hi, reach out on social media or send me an email.
+            </p>
+          </article>
+          <ul class="flex flex-wrap gap-2">
+            {
+              SOCIALS.map((SOCIAL) => (
+                <li class="flex gap-x-2 text-nowrap">
+                  <Link
+                    href={SOCIAL.HREF}
+                    external
+                    aria-label={`${SITE.NAME} on ${SOCIAL.NAME}`}
+                  >
+                    {SOCIAL.NAME}
+                  </Link>
+                  {"/"}
+                </li>
+              ))
+            }
+            <li class="line-clamp-1">
+              <Link
+                href={`mailto:${SITE.EMAIL}`}
+                aria-label={`Email ${SITE.NAME}`}
+              >
+                {SITE.EMAIL}
               </Link>
-              {"/"}
             </li>
-          ))}
-          <li class="line-clamp-1">
-            <Link href={`mailto:${SITE.EMAIL}`} aria-label={`Email ${SITE.NAME}`}>
-              {SITE.EMAIL}
-            </Link>
-          </li>
-        </ul>
-      </section>
+          </ul>
+        </section>
+      </div>
     </div>
   </Container>
 </PageLayout>

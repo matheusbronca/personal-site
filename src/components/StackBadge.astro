@@ -1,0 +1,22 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { STACKS } from "@consts";
+
+interface Props {
+  title: string;
+  stack: NonNullable<CollectionEntry<"projects">["data"]["stack"]>[number];
+}
+
+const { title, stack } = Astro.props;
+
+const Component = STACKS[stack].Icon;
+---
+
+<div class="w-min flex gap-2 -mt-0 pr-0 z-10">
+  <div
+    title={title}
+    class="rounded border bg-white border-black/15 dark:border-white/20 hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:text-black dark:hover:text-white dark:bg-zinc-900 p-1 transition-colors duration-300 ease-in-out"
+  >
+    <Component />
+  </div>
+</div>

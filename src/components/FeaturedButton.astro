@@ -1,0 +1,31 @@
+---
+interface Props {
+  href: string;
+}
+
+const { href } = Astro.props;
+---
+
+<a
+  href={href}
+  class="group no-underline inline-flex gap-2 h-12 animate-shimmer items-center justify-center rounded-md border border-zinc-500 bg-[linear-gradient(110deg,#fafafa,45%,#eef6fb,55%,#fafafa)] dark:bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium dark:text-white text-black transition-colors mt-4 mx-auto hover:dark:bg-[linear-gradient(110deg,#161617,45%,#1e2631,55%,#161617)] hover:bg-[linear-gradient(110deg,#ededed,45%,#eef6fb,#ededed)] duration-300 ease-in-out"
+>
+  <slot />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    class="size-4 stroke-2 fill-none stroke-current rotate-180"
+  >
+    <line
+      x1="5"
+      y1="12"
+      x2="19"
+      y2="12"
+      class="translate-x-2 group-hover:translate-x-0 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"
+    ></line>
+    <polyline
+      points="12 5 5 12 12 19"
+      class="translate-x-1 group-hover:translate-x-0 transition-transform duration-300 ease-in-out"
+    ></polyline>
+  </svg>
+</a>

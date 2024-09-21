@@ -1,0 +1,64 @@
+---
+import type { CollectionEntry } from "astro:content";
+import StackBadge from "./StackBadge.astro";
+
+type Props = {
+  entry: CollectionEntry<"projects">;
+};
+
+const { entry } = Astro.props;
+---
+
+<a
+  href={`/${entry.collection}/${entry.slug}`}
+  class="relative group flex flex-nowrap overflow-hidden rounded-lg border border-black/15 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/5 hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out h-full"
+>
+  <div class="flex flex-col w-full">
+    <div class="relative">
+      <img
+        class="size-full max-h-[14rem] object-cover"
+        src={entry.data.thumbnailImg.url}
+        alt="Banner"
+      />
+      <div
+        class="absolute top-0 left-0 size-full bg-gradient-to-t from-transparent z-10"
+      >
+      </div>
+    </div>
+    <div class="w-full flex gap-2 justify-end -mt-4 pr-4 z-10">
+      {
+        entry.data.stack?.map((stack) => (
+          <StackBadge title="React Library" stack={stack} />
+        ))
+      }
+    </div>
+    <div class="flex flex-col flex-1 truncate p-5 pt-1">
+      <div class="text-[0.625rem]">
+        {entry.data.customer}
+      </div>
+      <div class="font-semibold">
+        {entry.data.title}
+      </div>
+      <div class="text-xs mt-2 text-pretty">
+        {entry.data.description}
+      </div>
+    </div>
+  </div>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    class="absolute top-1/2 right-2 -translate-y-1/2 size-5 stroke-2 fill-none stroke-current"
+  >
+    <line
+      x1="5"
+      y1="12"
+      x2="19"
+      y2="12"
+      class="translate-x-3 group-hover:translate-x-0 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"
+    ></line>
+    <polyline
+      points="12 5 19 12 12 19"
+      class="-translate-x-1 group-hover:translate-x-0 transition-transform duration-300 ease-in-out"
+    ></polyline>
+  </svg>
+</a>
