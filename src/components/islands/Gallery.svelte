@@ -72,7 +72,6 @@
   const openImageViewer = ({
     target,
   }: MouseEvent & { currentTarget: EventTarget & HTMLElement }) => {
-    console.log("target::: ", target);
     if (!target) return;
     const index = (target as HTMLElement).dataset.index;
     showModal = Number(index);
@@ -125,13 +124,13 @@
         </button>
       </div>
       <div class="text-xs dark:text-white/70 text-black/70 pr-2">
-        {currentSlideIndex + 1}/{slidesLength}
+        {currentSlideIndex + 1}/{!slidesLength ? 1 : slidesLength}
       </div>
     </div>
   </div>
   {#if typeof showModal !== "undefined"}
     <div
-      class="flex flex-col h-full w-max mx-auto items-center justify-center"
+      class="flex flex-col min-h-screen mx-auto items-center justify-center w-max"
       use:modal={{
         selector: "body",
         backdropClass:
@@ -140,13 +139,11 @@
         onEscape: closeImageViewer,
       }}
     >
-      <div
-        transition:fly={{ y: 10 }}
-        class="max-h-[100vh] h-full aspect-ig-story flex flex-col items-center justify-center my-10 relative"
-      >
+      <div transition:fly={{ y: 10 }} class="relative w-min">
         <button
+          transition:fly={{ y: 10, delay: 600 }}
           on:click={closeImageViewer}
-          class="absolute right-6 top-2 group w-fit flex p-1 flex-nowrap rounded-full border border-white/20 hover:bg-black/70 text-white/50 hover:text-white transition-colors duration-300 ease-in-out text-xs bg-black/40 aspect-square items-center"
+          class="absolute right-2 top-2 group w-fit flex p-1 flex-nowrap rounded-full border border-white/20 hover:bg-black/70 text-white/50 hover:text-white transition-colors duration-300 ease-in-out text-xs bg-black/40 aspect-square items-center"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -167,7 +164,7 @@
           >
         </button>
         <GalleryImg
-          class="aspect-ig-story object-cover h-full w-min rounded-md"
+          class="aspect-ig-story object-cover size-full flex-1"
           src={imgs[showModal].src}
           mobileSrc={imgs[showModal].mobileSrc}
           inView={true}
@@ -175,7 +172,7 @@
         />
         <div
           transition:fly={{ y: 10 }}
-          class="text-sm text-center mt-4 max-w-[97%] dark:text-white/80 text-black/80"
+          class="text-sm text-center mt-4 mx-auto dark:text-white/80 text-black/80 w-[min(49vh,79vw)] max-w-[90vw]"
         >
           {imgs[showModal].altText}
         </div>

@@ -100,7 +100,7 @@
         </button>
       </div>
       <div class="text-xs text-white/70">
-        {currentSlideIndex + 1}/{slidesLength}
+        {currentSlideIndex + 1}/{!slidesLength ? 0 : slidesLength}
       </div>
       <a
         target="_blank"

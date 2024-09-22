@@ -20,7 +20,9 @@ const Entry = await entry.render();
   </a>
   <div>
     <div class="font-semibold text-black dark:text-white">
-      <a href={entry.data.url} rel="external">{entry.data.company}</a>
+      <a href={entry.data.url} rel="external" target="_blank"
+        >{entry.data.company}</a
+      >
     </div>
     <div class="text-xs opacity-75">
       {dateRange(entry.data.dateStart, entry.data.dateEnd)}

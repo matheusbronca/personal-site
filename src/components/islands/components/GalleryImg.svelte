@@ -17,7 +17,6 @@
   };
 
   const setLoaded = ({ target }: Event) => {
-    console.log("Carregou!", target);
     hasLoaded = (target as HTMLImageElement).src !== PLACEHOLDER_SRC;
   };
 </script>
@@ -28,7 +27,7 @@
 <picture
   {...$$restProps}
   class:hasLoaded
-  class={`lazyLoadImg border-zinc-500 animate-shimmer bg-[linear-gradient(110deg,#fafafa,45%,#dbdbdb,55%,#fafafa)] dark:bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] ${$$restProps.class}`}
+  class={`lazyLoadImg animate-shimmer bg-[linear-gradient(110deg,#fafafa,45%,#dbdbdb,55%,#fafafa)] dark:bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] ${$$restProps.class}`}
 >
   <Source
     type="image/webp"
@@ -37,10 +36,9 @@
     aspectRatio={9 / 16}
   />
   <Image
-    class={`${hasLoaded ? "hasLoaded" : ""} size-full object-cover ${$$restProps.class}`}
+    class={`${hasLoaded ? "hasLoaded" : ""} rounded-lg`}
     on:load={setLoaded}
     src={inView ? src : PLACEHOLDER_SRC}
-    layout="constrained"
     width={498}
     aspectRatio={9 / 16}
     alt={altText}
