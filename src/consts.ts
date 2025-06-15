@@ -1,5 +1,7 @@
 import type { Site, Metadata, Socials } from "@types";
 
+import PostgresIcon from "@components/Icons/PostgresIcon.astro";
+import NextJsIcon from "@components/Icons/NextJsIcon.astro";
 import AstroIcon from "@components/Icons/AstroIcon.astro";
 import SvelteIcon from "@components/Icons/SvelteIcon.astro";
 import ReactIcon from "@components/Icons/ReactIcon.astro";
@@ -58,6 +60,18 @@ export const SOCIALS: Socials = [
 ];
 
 export const STACKS = {
+  POSTGRES: {
+    friendlyName: "PostgresSQL",
+    altText: "The world's most advanced open source database",
+    url: "https://www.postgresql.org/",
+    Icon: PostgresIcon,
+  },
+  NEXTJS: {
+    friendlyName: "Next.js",
+    altText: "The React Framework",
+    url: "https://nextjs.org/",
+    Icon: NextJsIcon,
+  },
   ASTRO: {
     friendlyName: "Astro",
     altText: "The web framework for content-driven websites",
