@@ -1,3 +1,4 @@
+import { STACKS } from "@consts";
 import { defineCollection, z } from "astro:content";
 
 const blog = defineCollection({
@@ -38,17 +39,7 @@ const projects = defineCollection({
     customer: z.string(),
     description: z.string(),
     stack: z
-      .enum([
-        "REACT",
-        "VTEX",
-        "GSAP",
-        "NODEJS",
-        "PHP",
-        "JAVASCRIPT",
-        "TYPESCRIPT",
-        "WORDPRESS",
-        "GRAPHQL",
-      ])
+      .enum(Object.keys(STACKS) as [keyof typeof STACKS])
       .array()
       .optional(),
     thumbnailImg: z.object({

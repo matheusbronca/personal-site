@@ -1,5 +1,7 @@
 import type { Site, Metadata, Socials } from "@types";
 
+import AstroIcon from "@components/Icons/AstroIcon.astro";
+import SvelteIcon from "@components/Icons/SvelteIcon.astro";
 import ReactIcon from "@components/Icons/ReactIcon.astro";
 import GsapIcon from "@components/Icons/GsapIcon.astro";
 import VtexIcon from "@components/Icons/VtexIcon.astro";
@@ -56,6 +58,18 @@ export const SOCIALS: Socials = [
 ];
 
 export const STACKS = {
+  ASTRO: {
+    friendlyName: "Astro",
+    altText: "The web framework for content-driven websites",
+    url: "https://astro.build/",
+    Icon: AstroIcon,
+  },
+  SVELTE: {
+    friendlyName: "Svelte",
+    altText: "Compiler-based UI framework for JavaScript",
+    url: "https://svelte.dev/",
+    Icon: SvelteIcon,
+  },
   REACT: {
     friendlyName: "React",
     altText: "Reactive UI library for JavaScript",
