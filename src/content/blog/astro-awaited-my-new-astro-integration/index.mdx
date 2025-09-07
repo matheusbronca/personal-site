@@ -1,0 +1,62 @@
+---
+title: "Astro Awaited: My new Astro Integration"
+description: "Render fallback placeholders while server-side data is being fetched — even before the page fully loads, and without requiring JavaScript on modern browsers."
+date: "Sep 07 2025"
+cover: "https://github.com/matheusbronca/astro-awaited/raw/main/public/example.gif"
+galleryImgs: []
+---
+
+Supercharge your Astro app with **automagic lazy-loaded components** powered by HTML streaming. This integration enables you to render fallback placeholders while server-side data is being fetched — even before the page fully loads, and without requiring JavaScript on modern browsers.
+
+<img src="https://github.com/matheusbronca/astro-awaited/raw/main/public/example.gif" />
+
+<a
+  href="https://github.com/matheusbronca/astro-awaited"
+  target="_blank"
+  rel="external"
+>
+  Click here to install and use it
+</a>
+
+### Why I Wanted Fallbacks Without JavaScript
+
+When I first started tinkering with Astro, I was blown away by its simplicity and performance. But one thing kept nagging at me: why couldn’t we render fallback placeholders while server-side data was loading—without relying on JavaScript?
+
+So I built [`astro-awaited`](https://github.com/matheusbronca/astro-awaited) to answer that question.
+
+### 🧠 The Idea Behind It
+
+I wanted something that felt like React’s Suspense, but for Astro—and without the baggage of client-side hydration. The goal was simple: make lazy-loaded components feel native, fast, and intuitive, even on browsers with JavaScript disabled.
+
+Turns out, HTML streaming is the secret sauce. With Astro’s support for streaming, I realized I could intercept the rendering flow and inject fallbacks that disappear once the awaited content is ready. No client-side logic. No hacks. Just clean, declarative Astro.
+
+### ✨ What Makes It Special
+
+- 🚫 Zero JavaScript (on modern browsers)
+- ⚙️ Zero Configuration
+- 🎨 Custom Transitions
+- 🧠 TypeScript Support
+- ⚡ Fast Build-Time Performance
+
+### 🧱 Lessons Learned
+
+While building this, I ran into a few quirks that I think are worth sharing:
+
+- Only `.astro` components are supported—don’t wrap `Awaited` in a separate component.
+- Avoid declaring `Awaited` components inside `client:only` components — it breaks HTML streaming.
+- Move your data fetching into components, not page frontmatter.
+- HTML streaming natueral behavior is top-down, so structure your layout to avoid bottlenecks.
+
+### 🎬 Under the Hood
+
+To make astro-awaited work seamlessly, I built a custom Vite plugin that scans .astro files during build time. It looks for Fallback components missing the slot="fallback" attribute and automatically injects it where needed—specifically as the first child inside the Awaited wrapper.
+
+This ensures that while your data is still loading, the fallback content temporarily overlays the awaited component, creating a smooth and intuitive user experience. Once the data is ready, the fallback fades out without any client-side JavaScript.
+
+It’s fast, declarative, and completely runtime-free—just the way Astro likes
+
+### 💬 Final Thoughts
+
+`astro-awaited` is my love letter to declarative UI and performance-first design. If you’re building with Astro and want to elevate your UX without bloating your bundle, I hope this integration helps.
+
+Feel free to check out the [repo](https://github.com/matheusbronca/astro-awaited) and let me know what you build with it. I’d love to see it in action.
