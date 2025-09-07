@@ -12,8 +12,6 @@
   export let imgs: ImgType[] | undefined = undefined;
   export let demoUrl: string | undefined = undefined;
 
-  const imagesInView: number[] = [];
-
   let emblaApi: EmblaCarouselType;
 
   let slidesLength = 0,
@@ -93,10 +91,14 @@
     <div class="flex justify-between items-center pt-2 w-full">
       <div class="pl-0 flex items-center">
         <button class="embla__prev size-min" on:click={scrollPrev}
-          ><ArrowIcon class="text-white/70" /></button
+          ><ArrowIcon
+            class="text-black/40 hover:text-black dark:text-white/70 dark:text-white"
+          /></button
         >
         <button class="embla__next size-min" on:click={scrollNext}
-          ><ArrowIcon class="rotate-180 text-white/70" />
+          ><ArrowIcon
+            class="rotate-180 text-black/40 hover:text-black dark:text-white/70 dark:text-white"
+          />
         </button>
       </div>
       <div class="text-xs text-white/70">
@@ -106,7 +108,7 @@
         target="_blank"
         href={demoUrl}
         rel="external"
-        class="relative group w-fit flex px-3 py-1.5 flex-nowrap rounded border border-white/20 hover:bg-white/5 text-white/70 hover:text-white transition-colors duration-300 ease-in-out text-xs"
+        class="mb-1 relative group w-fit flex px-3 py-1.5 flex-nowrap rounded border border-black/20 hover:bg-black/5 dark:border-white/20 dark:hover:bg-white/5 dark:text-white/70 darK:hover:text-white text-black/70 hover:text-black transition-colors duration-300 ease-in-out text-xs"
       >
         <span
           class="size-1 bg-green-400 rounded-full animate-pulse absolute top-1 right-1"
