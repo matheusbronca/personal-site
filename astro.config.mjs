@@ -5,6 +5,6 @@ import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
 
 export default defineConfig({
-  site: "https://astro-nano-demo.vercel.app",
+  site: "https://matheusbronca.com",
   integrations: [mdx(), sitemap(), tailwind(), svelte()],
 });
