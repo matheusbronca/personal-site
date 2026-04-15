@@ -1,0 +1,4 @@
+{
+  "installCommand": "npm ci",
+  "nodeVersion": "20.x"
+}
