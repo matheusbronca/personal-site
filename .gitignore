@@ -21,3 +21,4 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 matheus_bronca_cv.json
+package-lock.json
