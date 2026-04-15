@@ -16,7 +16,7 @@
     "@astrojs/check": "^0.5.9",
     "@astrojs/mdx": "^2.2.0",
     "@astrojs/rss": "^4.0.5",
-    "@astrojs/sitemap": "^3.1.1",
+    "@astrojs/sitemap": "3.0.5",
     "@astrojs/svelte": "^5.7.0",
     "@astrojs/tailwind": "^5.1.0",
     "@astrolib/seo": "^1.0.0-beta.6",
@@ -26,7 +26,7 @@
     "@typescript-eslint/eslint-plugin": "^7.3.1",
     "@typescript-eslint/parser": "^7.3.1",
     "@unpic/svelte": "^0.0.53",
-    "astro": "^4.5.6",
+    "astro": "^4.16.19",
     "clsx": "^2.1.0",
     "embla-carousel-svelte": "^8.2.1",
     "eslint": "^8.57.0",
@@ -41,5 +41,8 @@
   "devDependencies": {
     "eslint-config-prettier": "^9.1.0",
     "prettier": "^3.3.3"
+  },
+  "overrides": {
+    "sitemap": "7.1.1"
   }
 }
